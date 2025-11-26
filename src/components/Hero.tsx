@@ -10,7 +10,7 @@ const Hero = () => {
         <img 
           src={heroImage} 
           alt="OBI outdoor venue at sunset" 
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover grayscale"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-foreground/40 via-foreground/30 to-background/95" />
       </div>
