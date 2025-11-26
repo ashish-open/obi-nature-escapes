@@ -21,7 +21,7 @@ const Hero = () => {
       {/* Content */}
       <div className="relative z-10 container mx-auto px-4 text-center">
         <div className="animate-on-scroll visible">
-        <h1 className="font-display text-5xl md:text-7xl lg:text-8xl font-black mb-6 leading-tight">
+        <h1 className="font-display text-4xl md:text-6xl lg:text-7xl font-black mb-6 leading-tight">
           <span className="block text-gradient">Where Celebrations, Nature</span>
           <span className="block text-primary-foreground">& Community Come Together</span>
         </h1>
