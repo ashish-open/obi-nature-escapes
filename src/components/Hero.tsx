@@ -10,7 +10,7 @@ const Hero = () => {
         <img 
           src={heroImage} 
           alt="OBI outdoor venue at sunset" 
-          className="w-full h-full object-cover grayscale"
+          className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-foreground/40 via-foreground/30 to-background/95" />
       </div>
@@ -30,14 +30,20 @@ const Hero = () => {
           Escape from the noise and reconnect with nature at Bengaluru's favourite outdoor venue for events, picnics, and family experiences.
         </p>
 
-        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-          <Button 
-            size="lg" 
-            className="gradient-sunset text-primary-foreground hover:scale-105 transition-all duration-300 shadow-[0_10px_40px_-10px_hsl(var(--primary)/0.5)] text-lg px-8 py-6 group"
+        <div className="flex justify-center items-center">
+          <a 
+            href="https://wa.me/918129195388?text=Hi%2C%20Looking%20forward%20to%20explore%20the%20Obi%20Space"
+            target="_blank"
+            rel="noopener noreferrer"
           >
-            Plan an Event
-            <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
-          </Button>
+            <Button 
+              size="lg" 
+              className="gradient-sunset text-primary-foreground hover:scale-105 transition-all duration-300 shadow-[0_10px_40px_-10px_hsl(var(--primary)/0.5)] text-lg px-8 py-6 group"
+            >
+              Plan an Event
+              <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
+            </Button>
+          </a>
         </div>
         </div>
       </div>
