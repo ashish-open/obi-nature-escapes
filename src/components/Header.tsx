@@ -22,11 +22,10 @@ const Header = () => {
     }
   };
 
-  const menuItems = [
+  const navItems = [
     { label: "About us", id: "about" },
     { label: "Spaces", id: "spaces" },
     { label: "Gallery", id: "gallery" },
-    { label: "Contact Us", id: "contact" },
   ];
 
   return (
@@ -42,9 +41,9 @@ const Header = () => {
             Obi Space
           </div>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-8">
-            {menuItems.map((item) => (
+          {/* Desktop Navigation - Centered */}
+          <nav className="hidden md:flex items-center gap-8 absolute left-1/2 -translate-x-1/2">
+            {navItems.map((item) => (
               <button
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
@@ -54,6 +53,15 @@ const Header = () => {
               </button>
             ))}
           </nav>
+
+          {/* Desktop CTA */}
+          <Button
+            onClick={() => scrollToSection("contact")}
+            className="hidden md:flex"
+            size="default"
+          >
+            Contact Us
+          </Button>
 
           {/* Mobile Menu Button */}
           <button
@@ -67,7 +75,7 @@ const Header = () => {
         {/* Mobile Navigation */}
         {isMobileMenuOpen && (
           <nav className="md:hidden pb-6 animate-fade-in">
-            {menuItems.map((item) => (
+            {navItems.map((item) => (
               <button
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
@@ -76,6 +84,13 @@ const Header = () => {
                 {item.label}
               </button>
             ))}
+            <Button
+              onClick={() => scrollToSection("contact")}
+              className="w-full mt-4"
+              size="default"
+            >
+              Contact Us
+            </Button>
           </nav>
         )}
       </div>
