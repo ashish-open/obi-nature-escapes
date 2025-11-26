@@ -38,14 +38,6 @@ const Hero = () => {
             Plan an Event
             <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
           </Button>
-          
-          <Button 
-            size="lg" 
-            variant="outline"
-            className="bg-card/90 backdrop-blur-sm hover:bg-card border-2 border-primary text-primary hover:scale-105 transition-all duration-300 text-lg px-8 py-6"
-          >
-            Book a Visit
-          </Button>
         </div>
         </div>
       </div>
