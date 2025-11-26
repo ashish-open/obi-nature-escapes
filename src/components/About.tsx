@@ -1,6 +1,9 @@
 import { Leaf, Users, Sparkles } from "lucide-react";
+import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 
 const About = () => {
+  const titleAnimation = useScrollAnimation();
+  const cardsAnimation = useScrollAnimation();
   const highlights = [
     {
       icon: Leaf,
@@ -22,7 +25,10 @@ const About = () => {
   return (
     <section className="py-20 md:py-32 bg-background">
       <div className="container mx-auto px-4">
-        <div className="max-w-4xl mx-auto text-center mb-16 animate-slide-up">
+        <div 
+          ref={titleAnimation.ref}
+          className={`max-w-4xl mx-auto text-center mb-16 animate-on-scroll ${titleAnimation.isVisible ? 'visible' : ''}`}
+        >
           <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-black mb-6 text-gradient">
             More Than a Venue
           </h2>
@@ -37,12 +43,14 @@ const About = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+        <div 
+          ref={cardsAnimation.ref}
+          className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto"
+        >
           {highlights.map((highlight, index) => (
             <div 
               key={index}
-              className="group bg-card rounded-2xl p-8 shadow-[var(--shadow-subtle)] hover:shadow-[var(--shadow-warm)] transition-all duration-300 hover:-translate-y-2 animate-slide-up"
-              style={{ animationDelay: `${index * 0.1}s` }}
+              className={`group bg-card rounded-2xl p-8 shadow-[var(--shadow-subtle)] transition-all duration-500 hover-lift hover-glow animate-scale-in stagger-${index + 1} ${cardsAnimation.isVisible ? 'visible' : ''}`}
             >
               <div className="w-16 h-16 rounded-full gradient-sunset flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
                 <highlight.icon className="w-8 h-8 text-primary-foreground" />

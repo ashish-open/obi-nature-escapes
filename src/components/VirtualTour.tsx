@@ -1,12 +1,17 @@
 import { Button } from "@/components/ui/button";
 import { Video } from "lucide-react";
+import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 
 const VirtualTour = () => {
+  const animation = useScrollAnimation();
   return (
     <section className="py-20 md:py-32 bg-muted/30">
       <div className="container mx-auto px-4">
-        <div className="max-w-4xl mx-auto text-center animate-slide-up">
-          <div className="w-20 h-20 rounded-full gradient-sunset flex items-center justify-center mx-auto mb-8 animate-pulse">
+        <div 
+          ref={animation.ref}
+          className={`max-w-4xl mx-auto text-center animate-scale-in ${animation.isVisible ? 'visible' : ''}`}
+        >
+          <div className="w-20 h-20 rounded-full gradient-sunset flex items-center justify-center mx-auto mb-8 animate-float">
             <Video className="w-10 h-10 text-primary-foreground" />
           </div>
           

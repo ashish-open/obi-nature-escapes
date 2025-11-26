@@ -19,7 +19,8 @@ const Hero = () => {
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_hsl(var(--primary)/0.2),_transparent_70%)]" />
 
       {/* Content */}
-      <div className="relative z-10 container mx-auto px-4 text-center animate-fade-in">
+      <div className="relative z-10 container mx-auto px-4 text-center">
+        <div className="animate-on-scroll visible">
         <h1 className="font-display text-5xl md:text-7xl lg:text-8xl font-black mb-6 leading-tight">
           <span className="block text-gradient">Where City Ends</span>
           <span className="block text-primary-foreground">& Nature Begins</span>
@@ -45,6 +46,7 @@ const Hero = () => {
           >
             Book a Visit
           </Button>
+        </div>
         </div>
       </div>
 

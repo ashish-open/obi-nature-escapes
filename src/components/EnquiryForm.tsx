@@ -5,8 +5,11 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
+import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 
 const EnquiryForm = () => {
+  const titleAnimation = useScrollAnimation();
+  const formAnimation = useScrollAnimation<HTMLFormElement>();
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -30,7 +33,10 @@ const EnquiryForm = () => {
     <section className="py-20 md:py-32 bg-muted/30">
       <div className="container mx-auto px-4">
         <div className="max-w-3xl mx-auto">
-          <div className="text-center mb-12 animate-slide-up">
+          <div 
+            ref={titleAnimation.ref}
+            className={`text-center mb-12 animate-on-scroll ${titleAnimation.isVisible ? 'visible' : ''}`}
+          >
             <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-black mb-4 text-gradient">
               Plan Your Event with Us
             </h2>
@@ -40,9 +46,9 @@ const EnquiryForm = () => {
           </div>
 
           <form 
+            ref={formAnimation.ref}
             onSubmit={handleSubmit}
-            className="bg-card rounded-3xl p-8 md:p-12 shadow-[var(--shadow-warm)] animate-slide-up"
-            style={{ animationDelay: "0.1s" }}
+            className={`bg-card rounded-3xl p-8 md:p-12 shadow-[var(--shadow-warm)] transition-all duration-700 hover-lift animate-scale-in ${formAnimation.isVisible ? 'visible' : ''}`}
           >
             <div className="grid md:grid-cols-2 gap-6 mb-6">
               <div>

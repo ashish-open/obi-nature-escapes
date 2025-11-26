@@ -1,8 +1,11 @@
 import { Button } from "@/components/ui/button";
 import afterschoolImage from "@/assets/afterschool.jpg";
 import { Heart, Palette, Users, Calendar } from "lucide-react";
+import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 
 const Afterschool = () => {
+  const contentAnimation = useScrollAnimation();
+  const imageAnimation = useScrollAnimation();
   const highlights = [
     { icon: Heart, text: "Outdoor fitness" },
     { icon: Palette, text: "Creative workshops" },
@@ -14,7 +17,10 @@ const Afterschool = () => {
     <section className="py-20 md:py-32 bg-background overflow-hidden">
       <div className="container mx-auto px-4">
         <div className="grid lg:grid-cols-2 gap-12 items-center max-w-7xl mx-auto">
-          <div className="animate-slide-up">
+          <div 
+            ref={contentAnimation.ref}
+            className={`animate-slide-left ${contentAnimation.isVisible ? 'visible' : ''}`}
+          >
             <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-black mb-6">
               <span className="text-gradient">Afterschool Collective</span>
               <span className="block text-foreground mt-2">Ages 7–17</span>
@@ -43,7 +49,10 @@ const Afterschool = () => {
             </Button>
           </div>
 
-          <div className="relative animate-slide-up" style={{ animationDelay: "0.2s" }}>
+          <div 
+            ref={imageAnimation.ref}
+            className={`relative animate-slide-right ${imageAnimation.isVisible ? 'visible' : ''}`}
+          >
             <div className="absolute inset-0 gradient-sunset rounded-3xl blur-3xl opacity-20" />
             <div className="relative rounded-3xl overflow-hidden shadow-[var(--shadow-warm)]">
               <img 

@@ -3,8 +3,11 @@ import celebrationImage from "@/assets/celebration-garden.jpg";
 import pavilionImage from "@/assets/green-pavilion.jpg";
 import picnicImage from "@/assets/picnic-lawns.jpg";
 import trailsImage from "@/assets/nature-trails.jpg";
+import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 
 const EventSpaces = () => {
+  const titleAnimation = useScrollAnimation();
+  const cardsAnimation = useScrollAnimation();
   const spaces = [
     {
       title: "Celebration Garden",
@@ -31,18 +34,23 @@ const EventSpaces = () => {
   return (
     <section className="py-20 md:py-32 bg-background">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16 animate-slide-up">
+        <div 
+          ref={titleAnimation.ref}
+          className={`text-center mb-16 animate-on-scroll ${titleAnimation.isVisible ? 'visible' : ''}`}
+        >
           <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-black mb-4 text-gradient">
             Spaces to Celebrate, Work & Play
           </h2>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto mb-12">
+        <div 
+          ref={cardsAnimation.ref}
+          className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto mb-12"
+        >
           {spaces.map((space, index) => (
             <div
               key={index}
-              className="group bg-card rounded-2xl overflow-hidden shadow-[var(--shadow-subtle)] hover:shadow-[var(--shadow-warm)] transition-all duration-500 hover:-translate-y-2 animate-slide-up"
-              style={{ animationDelay: `${index * 0.1}s` }}
+              className={`group bg-card rounded-2xl overflow-hidden shadow-[var(--shadow-subtle)] transition-all duration-700 hover-lift cursor-pointer ${index % 2 === 0 ? 'animate-slide-left' : 'animate-slide-right'} stagger-${(index % 4) + 1} ${cardsAnimation.isVisible ? 'visible' : ''}`}
             >
               <div className="relative h-64 overflow-hidden">
                 <img 

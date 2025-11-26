@@ -1,8 +1,11 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { CheckCircle2 } from "lucide-react";
+import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 
 const Packages = () => {
+  const titleAnimation = useScrollAnimation();
+  const cardsAnimation = useScrollAnimation();
   const packages = [
     {
       title: "Event Packages",
@@ -45,18 +48,23 @@ const Packages = () => {
   return (
     <section className="py-20 md:py-32 bg-muted/30">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16 animate-slide-up">
+        <div 
+          ref={titleAnimation.ref}
+          className={`text-center mb-16 animate-on-scroll ${titleAnimation.isVisible ? 'visible' : ''}`}
+        >
           <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-black mb-4 text-gradient">
             Event Packages & Experiences
           </h2>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8 max-w-7xl mx-auto">
+        <div 
+          ref={cardsAnimation.ref}
+          className="grid md:grid-cols-3 gap-8 max-w-7xl mx-auto"
+        >
           {packages.map((pkg, index) => (
             <Card 
               key={index}
-              className="border-2 hover:border-primary transition-all duration-300 hover:shadow-[var(--shadow-warm)] hover:-translate-y-2 animate-slide-up"
-              style={{ animationDelay: `${index * 0.1}s` }}
+              className={`border-2 hover:border-primary transition-all duration-700 hover-lift hover-glow cursor-pointer animate-scale-in stagger-${index + 1} ${cardsAnimation.isVisible ? 'visible' : ''}`}
             >
               <CardContent className="p-8">
                 <h3 className="font-display text-2xl font-bold mb-3 text-foreground">

@@ -1,12 +1,18 @@
 import { Button } from "@/components/ui/button";
 import { MapPin, Navigation } from "lucide-react";
+import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 
 const Location = () => {
+  const titleAnimation = useScrollAnimation();
+  const mapAnimation = useScrollAnimation();
   return (
     <section className="py-20 md:py-32 bg-background">
       <div className="container mx-auto px-4">
         <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-12 animate-slide-up">
+          <div 
+            ref={titleAnimation.ref}
+            className={`text-center mb-12 animate-on-scroll ${titleAnimation.isVisible ? 'visible' : ''}`}
+          >
             <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-black mb-6">
               <span className="text-gradient">Location</span>
               <span className="text-foreground"> — OBI, Off Sarjapur Road</span>
@@ -17,7 +23,10 @@ const Location = () => {
             </p>
           </div>
 
-          <div className="bg-card rounded-3xl overflow-hidden shadow-[var(--shadow-warm)] animate-slide-up" style={{ animationDelay: "0.1s" }}>
+          <div 
+            ref={mapAnimation.ref}
+            className={`bg-card rounded-3xl overflow-hidden shadow-[var(--shadow-warm)] transition-all duration-700 hover-lift animate-scale-in ${mapAnimation.isVisible ? 'visible' : ''}`}
+          >
             {/* Map Placeholder */}
             <div className="relative h-96 bg-muted flex items-center justify-center">
               <div className="text-center">
