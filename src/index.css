@@ -8,14 +8,14 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 36 40% 96%;
-    --foreground: 25 35% 15%;
+    --background: 0 0% 100%;
+    --foreground: 0 0% 8%;
 
     --card: 0 0% 100%;
-    --card-foreground: 25 35% 15%;
+    --card-foreground: 0 0% 8%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 25 35% 15%;
+    --popover-foreground: 0 0% 8%;
 
     --primary: 25 95% 58%;
     --primary-foreground: 0 0% 100%;
@@ -23,17 +23,17 @@ All colors MUST be HSL.
     --secondary: 142 45% 45%;
     --secondary-foreground: 0 0% 100%;
 
-    --muted: 36 30% 88%;
-    --muted-foreground: 25 20% 40%;
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 35%;
 
     --accent: 45 100% 65%;
-    --accent-foreground: 25 35% 15%;
+    --accent-foreground: 0 0% 8%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 36 25% 85%;
-    --input: 36 25% 85%;
+    --border: 0 0% 90%;
+    --input: 0 0% 90%;
     --ring: 25 95% 58%;
 
     --radius: 1rem;
@@ -71,14 +71,14 @@ All colors MUST be HSL.
   }
 
   .dark {
-    --background: 25 30% 8%;
-    --foreground: 36 40% 96%;
+    --background: 0 0% 5%;
+    --foreground: 0 0% 98%;
 
-    --card: 25 25% 12%;
-    --card-foreground: 36 40% 96%;
+    --card: 0 0% 8%;
+    --card-foreground: 0 0% 98%;
 
-    --popover: 25 25% 12%;
-    --popover-foreground: 36 40% 96%;
+    --popover: 0 0% 8%;
+    --popover-foreground: 0 0% 98%;
 
     --primary: 25 95% 58%;
     --primary-foreground: 0 0% 100%;
@@ -86,17 +86,17 @@ All colors MUST be HSL.
     --secondary: 142 40% 35%;
     --secondary-foreground: 0 0% 100%;
 
-    --muted: 25 20% 18%;
-    --muted-foreground: 36 20% 65%;
+    --muted: 0 0% 12%;
+    --muted-foreground: 0 0% 65%;
 
     --accent: 45 100% 65%;
-    --accent-foreground: 25 30% 8%;
+    --accent-foreground: 0 0% 5%;
 
     --destructive: 0 62.8% 50%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 25 20% 20%;
-    --input: 25 20% 20%;
+    --border: 0 0% 18%;
+    --input: 0 0% 18%;
     --ring: 25 95% 58%;
   }
 }
