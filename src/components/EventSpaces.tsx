@@ -1,4 +1,6 @@
 import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { Sparkles } from "lucide-react";
 import celebrationImage from "@/assets/celebration-garden.jpg";
 import pavilionImage from "@/assets/green-pavilion.jpg";
 import picnicImage from "@/assets/picnic-lawns.jpg";
@@ -12,22 +14,38 @@ const EventSpaces = () => {
     {
       title: "Celebration Garden",
       description: "Open lawn ideal for birthdays, engagements, intimate events.",
-      image: celebrationImage
+      image: celebrationImage,
+      tags: ["20-500 guests", "Open-air", "Games-friendly"]
     },
     {
       title: "Green Pavilion",
       description: "Semi-covered space perfect for workshops, meetups & gatherings.",
-      image: pavilionImage
+      image: pavilionImage,
+      tags: ["Family-friendly", "Shaded", "Tent setups"]
     },
     {
       title: "Picnic Lawns & Play Zones",
       description: "Relaxation spaces with shade, seating, farm views & kids' play.",
-      image: picnicImage
+      image: picnicImage,
+      tags: ["Air-conditioned", "Professional", "Wi-Fi enabled"]
     },
     {
       title: "Nature Trails & Activity Areas",
       description: "Perfect for photoshoots, nature walks and family outings.",
-      image: trailsImage
+      image: trailsImage,
+      tags: ["Wi-Fi", "Quiet spaces", "Day passes"]
+    },
+    {
+      title: "Art Village & Clay Studio",
+      description: "Creative spaces for art jams, clay sessions, kids & adult workshops.",
+      image: celebrationImage,
+      tags: ["Creative", "Workshops", "All ages"]
+    },
+    {
+      title: "Sports Ground & Court",
+      description: "Outdoor half basketball court for pickleball, basketball, skating, and more.",
+      image: trailsImage,
+      tags: ["Multi-sport", "Outdoor", "Hourly bookings"]
     }
   ];
 
@@ -38,44 +56,62 @@ const EventSpaces = () => {
           ref={titleAnimation.ref}
           className={`text-center mb-16 animate-on-scroll ${titleAnimation.isVisible ? 'visible' : ''}`}
         >
-          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-black mb-4 text-gradient">
-            Spaces to Celebrate, Work & Play
+          <div className="flex justify-center mb-4">
+            <Sparkles className="w-8 h-8 text-primary" />
+          </div>
+          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-black mb-4">
+            <span className="text-foreground">Spaces to Celebrate, Work,</span>
+            <br />
+            <span className="text-primary italic">and Play</span>
           </h2>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            Flexible indoor and outdoor spaces for every kind of gathering.
+          </p>
         </div>
 
         <div 
           ref={cardsAnimation.ref}
-          className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto mb-12"
+          className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto mb-12"
         >
           {spaces.map((space, index) => (
             <div
               key={index}
-              className={`group bg-card rounded-2xl overflow-hidden shadow-[var(--shadow-subtle)] transition-all duration-700 hover-lift cursor-pointer ${index % 2 === 0 ? 'animate-slide-left' : 'animate-slide-right'} stagger-${(index % 4) + 1} ${cardsAnimation.isVisible ? 'visible' : ''}`}
+              className={`group bg-card rounded-3xl overflow-hidden shadow-[var(--shadow-subtle)] transition-all duration-700 hover-lift cursor-pointer animate-scale-in stagger-${(index % 4) + 1} ${cardsAnimation.isVisible ? 'visible' : ''}`}
             >
-              <div className="relative h-64 overflow-hidden">
+              <div className="relative h-56 overflow-hidden">
                 <img 
                   src={space.image} 
                   alt={space.title}
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-foreground/80 to-transparent" />
               </div>
               
               <div className="p-6">
-                <h3 className="font-display text-2xl font-bold mb-3 text-foreground">
+                <h3 className="font-display text-xl font-bold mb-3 text-primary">
                   {space.title}
                 </h3>
-                <p className="text-muted-foreground leading-relaxed">
+                <p className="text-muted-foreground leading-relaxed mb-4">
                   {space.description}
                 </p>
+                <div className="flex flex-wrap gap-2">
+                  {space.tags.map((tag, tagIndex) => (
+                    <Badge 
+                      key={tagIndex}
+                      variant="secondary"
+                      className="bg-primary/10 text-primary hover:bg-primary/20 border-0"
+                    >
+                      {tag}
+                    </Badge>
+                  ))}
+                </div>
               </div>
             </div>
           ))}
         </div>
 
         <div className="text-center">
-          <Button size="lg" className="gradient-sunset hover:scale-105 transition-all duration-300">
-            View All Spaces
+          <Button size="lg" className="gradient-sunset hover:scale-105 transition-all duration-300 text-base px-10">
+            Explore Packages & Pricing
           </Button>
         </div>
       </div>
