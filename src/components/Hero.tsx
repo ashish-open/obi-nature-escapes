@@ -12,7 +12,7 @@ const Hero = () => {
           alt="OBI Space - Modern lakeside event venue in Bengaluru" 
           className="w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-foreground/40 via-foreground/30 to-background/95" />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-foreground/10 to-background/90" />
       </div>
 
       {/* Glow Effect */}
