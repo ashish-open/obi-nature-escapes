@@ -6,27 +6,51 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
+import { supabase } from "@/integrations/supabase/client";
 
 const EnquiryForm = () => {
   const titleAnimation = useScrollAnimation();
   const formAnimation = useScrollAnimation<HTMLFormElement>();
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [eventType, setEventType] = useState("");
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 1000));
+    const formData = new FormData(e.currentTarget);
+    const eventDate = formData.get("eventDate") as string;
     
-    toast({
-      title: "Enquiry Submitted!",
-      description: "We'll get back to you within 24 hours.",
-    });
-    
-    setIsSubmitting(false);
-    (e.target as HTMLFormElement).reset();
+    try {
+      const { error } = await supabase.from("enquiries").insert({
+        name: formData.get("name") as string,
+        phone: formData.get("phone") as string,
+        email: formData.get("email") as string,
+        event_type: eventType,
+        event_date: eventDate || new Date().toISOString().split('T')[0],
+        message: formData.get("message") as string || null,
+      });
+
+      if (error) throw error;
+
+      toast({
+        title: "Enquiry Submitted!",
+        description: "We'll get back to you within 24 hours.",
+      });
+      
+      (e.target as HTMLFormElement).reset();
+      setEventType("");
+    } catch (error) {
+      console.error("Error submitting enquiry:", error);
+      toast({
+        title: "Submission Failed",
+        description: "Please try again or contact us directly.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -98,7 +122,7 @@ const EnquiryForm = () => {
                 <Label htmlFor="eventType" className="text-foreground mb-2 block font-semibold">
                   Event Type *
                 </Label>
-                <Select name="eventType" required>
+                <Select name="eventType" required value={eventType} onValueChange={setEventType}>
                   <SelectTrigger className="border-2 focus:border-primary transition-colors">
                     <SelectValue placeholder="Select event type" />
                   </SelectTrigger>
