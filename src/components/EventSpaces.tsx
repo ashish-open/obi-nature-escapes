@@ -18,7 +18,7 @@ const EventSpaces = () => {
       tags: ["20-500 guests", "Open-air", "Games-friendly"]
     },
     {
-      title: "Green Pavilion",
+      title: "Pavilion",
       description: "Semi-covered space perfect for workshops, meetups & gatherings.",
       image: pavilionImage,
       tags: ["Family-friendly", "Shaded", "Tent setups"]
