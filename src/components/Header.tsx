@@ -36,9 +36,9 @@ const Header = () => {
       }`}
     >
       <div className="container mx-auto px-4">
-        <div className="flex flex-col items-center justify-center h-20 md:h-24">
+        <div className="flex items-center justify-between h-20 md:h-24">
           {/* Logo */}
-          <div className="font-display text-2xl font-black text-primary cursor-pointer mb-2 md:mb-3">
+          <div className="font-display text-2xl font-black text-primary cursor-pointer">
             Obi Space
           </div>
 
@@ -57,7 +57,7 @@ const Header = () => {
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden absolute right-4 top-1/2 -translate-y-1/2 text-foreground"
+            className="md:hidden text-foreground"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
             {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
