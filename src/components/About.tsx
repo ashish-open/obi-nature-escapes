@@ -14,7 +14,7 @@ const About = () => {
     description: "Perfect for birthdays, offsites & getaways"
   }, {
     icon: MapPin,
-    description: "A peaceful 13-acre escape, minutes from the city"
+    description: "A peaceful 2-acre escape, minutes from the city"
   }];
   return <section className="py-16 sm:py-20 md:py-32 bg-background">
       <div className="container mx-auto px-4 sm:px-6">
@@ -24,7 +24,7 @@ const About = () => {
           </h2>
           
           <p className="text-base sm:text-lg md:text-xl text-muted-foreground leading-relaxed px-2">
-            OBI is a 13-acre outdoor farm space designed for families, teams, and communities.
+            OBI is a 2-acre lakeside event space designed for families, teams, and communities.
             From birthday parties and corporate events to picnics, afterschool programs and weekend activities — 
             we host experiences that bring people closer to nature and to each other.
           </p>
