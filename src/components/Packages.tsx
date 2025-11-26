@@ -46,20 +46,20 @@ const Packages = () => {
   ];
 
   return (
-    <section className="py-20 md:py-32 bg-muted/30">
-      <div className="container mx-auto px-4">
+    <section className="py-16 sm:py-20 md:py-32 bg-muted/30">
+      <div className="container mx-auto px-4 sm:px-6">
         <div 
           ref={titleAnimation.ref}
-          className={`text-center mb-16 animate-on-scroll ${titleAnimation.isVisible ? 'visible' : ''}`}
+          className={`text-center mb-12 sm:mb-16 animate-on-scroll ${titleAnimation.isVisible ? 'visible' : ''}`}
         >
-          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-black mb-4 text-gradient">
+          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black mb-4 text-gradient px-2">
             Event Packages & Experiences
           </h2>
         </div>
 
         <div 
           ref={cardsAnimation.ref}
-          className="grid md:grid-cols-3 gap-8 max-w-7xl mx-auto"
+          className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8 max-w-7xl mx-auto"
         >
           {packages.map((pkg, index) => (
             <Card 

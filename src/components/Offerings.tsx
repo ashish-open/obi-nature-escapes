@@ -34,20 +34,20 @@ const Offerings = () => {
   ];
 
   return (
-    <section className="py-20 md:py-32 bg-muted/30">
-      <div className="container mx-auto px-4">
+    <section className="py-16 sm:py-20 md:py-32 bg-muted/30">
+      <div className="container mx-auto px-4 sm:px-6">
         <div 
           ref={titleAnimation.ref}
-          className={`text-center mb-16 animate-on-scroll ${titleAnimation.isVisible ? 'visible' : ''}`}
+          className={`text-center mb-12 sm:mb-16 animate-on-scroll ${titleAnimation.isVisible ? 'visible' : ''}`}
         >
-          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-black mb-4 text-gradient">
+          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black mb-4 text-gradient px-2">
             Experiences for Every Occasion
           </h2>
         </div>
 
         <div 
           ref={cardsAnimation.ref}
-          className="grid md:grid-cols-2 lg:grid-cols-5 gap-6 max-w-7xl mx-auto mb-12"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 sm:gap-6 max-w-7xl mx-auto mb-8 sm:mb-12"
         >
           {offerings.map((offering, index) => (
             <div

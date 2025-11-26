@@ -14,23 +14,23 @@ const Afterschool = () => {
   ];
 
   return (
-    <section className="py-20 md:py-32 bg-background overflow-hidden">
-      <div className="container mx-auto px-4">
-        <div className="grid lg:grid-cols-2 gap-12 items-center max-w-7xl mx-auto">
+    <section className="py-16 sm:py-20 md:py-32 bg-background overflow-hidden">
+      <div className="container mx-auto px-4 sm:px-6">
+        <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 items-center max-w-7xl mx-auto">
           <div 
             ref={contentAnimation.ref}
             className={`animate-slide-left ${contentAnimation.isVisible ? 'visible' : ''}`}
           >
-            <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-black mb-6">
+            <h2 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black mb-4 sm:mb-6 px-2">
               <span className="text-gradient">Afterschool Collective</span>
               <span className="block text-foreground mt-2">Ages 7–17</span>
             </h2>
             
-            <p className="text-lg md:text-xl text-muted-foreground mb-8 leading-relaxed">
+            <p className="text-base sm:text-lg md:text-xl text-muted-foreground mb-6 sm:mb-8 leading-relaxed px-2">
               A hands-on, nature-based program helping kids build confidence, creativity and well-being through outdoor activities.
             </p>
 
-            <div className="grid grid-cols-2 gap-4 mb-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 mb-6 sm:mb-8">
               {highlights.map((highlight, index) => (
                 <div 
                   key={index}

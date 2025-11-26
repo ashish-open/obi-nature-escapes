@@ -50,28 +50,28 @@ const EventSpaces = () => {
   ];
 
   return (
-    <section className="py-20 md:py-32 bg-background">
-      <div className="container mx-auto px-4">
+    <section className="py-16 sm:py-20 md:py-32 bg-background">
+      <div className="container mx-auto px-4 sm:px-6">
         <div 
           ref={titleAnimation.ref}
-          className={`text-center mb-16 animate-on-scroll ${titleAnimation.isVisible ? 'visible' : ''}`}
+          className={`text-center mb-12 sm:mb-16 animate-on-scroll ${titleAnimation.isVisible ? 'visible' : ''}`}
         >
           <div className="flex justify-center mb-4">
-            <Sparkles className="w-8 h-8 text-primary" />
+            <Sparkles className="w-6 h-6 sm:w-8 sm:h-8 text-primary" />
           </div>
-          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-black mb-4">
+          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black mb-4 px-2">
             <span className="text-foreground">Spaces to Celebrate, Work,</span>
             <br />
             <span className="text-primary italic">and Play</span>
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto px-4">
             Flexible indoor and outdoor spaces for every kind of gathering.
           </p>
         </div>
 
         <div 
           ref={cardsAnimation.ref}
-          className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto mb-12"
+          className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8 max-w-7xl mx-auto mb-8 sm:mb-12"
         >
           {spaces.map((space, index) => (
             <div

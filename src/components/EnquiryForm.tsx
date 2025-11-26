@@ -30,17 +30,17 @@ const EnquiryForm = () => {
   };
 
   return (
-    <section className="py-20 md:py-32 bg-muted/30">
-      <div className="container mx-auto px-4">
+    <section className="py-16 sm:py-20 md:py-32 bg-muted/30">
+      <div className="container mx-auto px-4 sm:px-6">
         <div className="max-w-3xl mx-auto">
           <div 
             ref={titleAnimation.ref}
-            className={`text-center mb-12 animate-on-scroll ${titleAnimation.isVisible ? 'visible' : ''}`}
+            className={`text-center mb-8 sm:mb-12 animate-on-scroll ${titleAnimation.isVisible ? 'visible' : ''}`}
           >
-            <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-black mb-4 text-gradient">
+            <h2 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black mb-4 text-gradient px-2">
               Plan Your Event with Us
             </h2>
-            <p className="text-lg text-muted-foreground">
+            <p className="text-base sm:text-lg text-muted-foreground px-4">
               Fill out the form below and our team will reach out to you shortly.
             </p>
           </div>
@@ -48,9 +48,9 @@ const EnquiryForm = () => {
           <form 
             ref={formAnimation.ref}
             onSubmit={handleSubmit}
-            className={`bg-card rounded-3xl p-8 md:p-12 shadow-[var(--shadow-warm)] transition-all duration-700 hover-lift animate-scale-in ${formAnimation.isVisible ? 'visible' : ''}`}
+            className={`bg-card rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-12 shadow-[var(--shadow-warm)] transition-all duration-700 hover-lift animate-scale-in ${formAnimation.isVisible ? 'visible' : ''}`}
           >
-            <div className="grid md:grid-cols-2 gap-6 mb-6">
+            <div className="grid sm:grid-cols-2 gap-4 sm:gap-6 mb-4 sm:mb-6">
               <div>
                 <Label htmlFor="name" className="text-foreground mb-2 block font-semibold">
                   Name *
@@ -79,7 +79,7 @@ const EnquiryForm = () => {
               </div>
             </div>
 
-            <div className="mb-6">
+            <div className="mb-4 sm:mb-6">
               <Label htmlFor="email" className="text-foreground mb-2 block font-semibold">
                 Email *
               </Label>
@@ -93,7 +93,7 @@ const EnquiryForm = () => {
               />
             </div>
 
-            <div className="grid md:grid-cols-2 gap-6 mb-6">
+            <div className="grid sm:grid-cols-2 gap-4 sm:gap-6 mb-4 sm:mb-6">
               <div>
                 <Label htmlFor="eventType" className="text-foreground mb-2 block font-semibold">
                   Event Type *
@@ -126,7 +126,7 @@ const EnquiryForm = () => {
               </div>
             </div>
 
-            <div className="mb-8">
+            <div className="mb-6 sm:mb-8">
               <Label htmlFor="message" className="text-foreground mb-2 block font-semibold">
                 Message
               </Label>
