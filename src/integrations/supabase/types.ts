@@ -14,7 +14,213 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      afterschool_programs: {
+        Row: {
+          age_group: string | null
+          created_at: string | null
+          description: string
+          id: string
+          image_url: string | null
+          name: string
+          price: number | null
+          schedule: string | null
+          updated_at: string | null
+        }
+        Insert: {
+          age_group?: string | null
+          created_at?: string | null
+          description: string
+          id?: string
+          image_url?: string | null
+          name: string
+          price?: number | null
+          schedule?: string | null
+          updated_at?: string | null
+        }
+        Update: {
+          age_group?: string | null
+          created_at?: string | null
+          description?: string
+          id?: string
+          image_url?: string | null
+          name?: string
+          price?: number | null
+          schedule?: string | null
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
+      enquiries: {
+        Row: {
+          created_at: string | null
+          email: string
+          event_date: string
+          event_type: string
+          id: string
+          message: string | null
+          name: string
+          phone: string
+          status: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          email: string
+          event_date: string
+          event_type: string
+          id?: string
+          message?: string | null
+          name: string
+          phone: string
+          status?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          email?: string
+          event_date?: string
+          event_type?: string
+          id?: string
+          message?: string | null
+          name?: string
+          phone?: string
+          status?: string | null
+        }
+        Relationships: []
+      }
+      event_spaces: {
+        Row: {
+          capacity: number
+          created_at: string | null
+          description: string
+          features: string[] | null
+          id: string
+          image_url: string | null
+          name: string
+          price_per_hour: number | null
+          updated_at: string | null
+        }
+        Insert: {
+          capacity: number
+          created_at?: string | null
+          description: string
+          features?: string[] | null
+          id?: string
+          image_url?: string | null
+          name: string
+          price_per_hour?: number | null
+          updated_at?: string | null
+        }
+        Update: {
+          capacity?: number
+          created_at?: string | null
+          description?: string
+          features?: string[] | null
+          id?: string
+          image_url?: string | null
+          name?: string
+          price_per_hour?: number | null
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
+      gallery_images: {
+        Row: {
+          category: string | null
+          created_at: string | null
+          description: string | null
+          display_order: number | null
+          id: string
+          image_url: string
+          title: string | null
+        }
+        Insert: {
+          category?: string | null
+          created_at?: string | null
+          description?: string | null
+          display_order?: number | null
+          id?: string
+          image_url: string
+          title?: string | null
+        }
+        Update: {
+          category?: string | null
+          created_at?: string | null
+          description?: string | null
+          display_order?: number | null
+          id?: string
+          image_url?: string
+          title?: string | null
+        }
+        Relationships: []
+      }
+      packages: {
+        Row: {
+          created_at: string | null
+          description: string
+          duration_hours: number | null
+          features: string[] | null
+          id: string
+          is_popular: boolean | null
+          name: string
+          price: number
+          updated_at: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          description: string
+          duration_hours?: number | null
+          features?: string[] | null
+          id?: string
+          is_popular?: boolean | null
+          name: string
+          price: number
+          updated_at?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          description?: string
+          duration_hours?: number | null
+          features?: string[] | null
+          id?: string
+          is_popular?: boolean | null
+          name?: string
+          price?: number
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
+      testimonials: {
+        Row: {
+          avatar_url: string | null
+          created_at: string | null
+          customer_name: string
+          customer_title: string | null
+          event_type: string | null
+          id: string
+          rating: number | null
+          testimonial: string
+        }
+        Insert: {
+          avatar_url?: string | null
+          created_at?: string | null
+          customer_name: string
+          customer_title?: string | null
+          event_type?: string | null
+          id?: string
+          rating?: number | null
+          testimonial: string
+        }
+        Update: {
+          avatar_url?: string | null
+          created_at?: string | null
+          customer_name?: string
+          customer_title?: string | null
+          event_type?: string | null
+          id?: string
+          rating?: number | null
+          testimonial?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
