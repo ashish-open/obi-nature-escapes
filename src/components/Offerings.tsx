@@ -8,28 +8,28 @@ const Offerings = () => {
   const offerings = [
     {
       icon: PartyPopper,
-      title: "Outdoor Event Spaces",
-      description: "Perfect for celebrations of all kinds"
+      title: "Birthday Parties & Celebrations",
+      description: "Beautiful outdoor setups for birthdays, milestones, and intimate gatherings."
     },
     {
       icon: Coffee,
-      title: "Picnic & Day-Out Packages",
-      description: "Relaxing escapes for families and friends"
+      title: "Family & Friends Day-Outs",
+      description: "Picnics, nature walks, open lawns, and relaxing slow-day experiences."
     },
     {
       icon: Building2,
-      title: "Corporate Offsites",
-      description: "Team-building in natural surroundings"
-    },
-    {
-      icon: GraduationCap,
-      title: "Kids' Programs",
-      description: "Afterschool & weekend learning experiences"
+      title: "Team Offsites & Workspaces",
+      description: "Calm, nature-backed spaces for collaboration, strategy sessions, and deep work."
     },
     {
       icon: Trees,
-      title: "Nature Activities",
-      description: "Farm trails, play areas & open lawns"
+      title: "Farm & Nature Activities",
+      description: "Trail walks, hands-on farm experiences, green play zones, and open exploration."
+    },
+    {
+      icon: GraduationCap,
+      title: "After-School Movement Programs",
+      description: "Engaging physical, creative, and nature-based activities for children & youth."
     }
   ];
 
