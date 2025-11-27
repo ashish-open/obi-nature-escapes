@@ -302,7 +302,6 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
       if (cards.length === 0) return;
 
       cardsRef.current = cards;
-      const transformsCache = lastTransformsRef.current;
       const initialPositions = initialCardPositionsRef.current;
 
       // Store initial positions - need to get them before any transforms are applied
@@ -357,7 +356,7 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
       }
       stackCompletedRef.current = false;
       cardsRef.current = [];
-      transformsCache.clear();
+      lastTransformsRef.current.clear();
       initialCardPositionsRef.current.clear();
       isUpdatingRef.current = false;
     };
