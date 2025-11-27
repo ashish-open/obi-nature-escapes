@@ -29,7 +29,7 @@ const Hero = () => {
 
         <div className="flex justify-center items-center px-4">
           <a 
-            href="https://wa.me/918129195388?text=Hi%2C%20Looking%20forward%20to%20explore%20the%20Obi%20Space"
+            href="https://wa.me/917676816124?text=Hi%2C%20Looking%20forward%20to%20explore%20the%20Obi%20Space"
             target="_blank"
             rel="noopener noreferrer"
             className="w-full sm:w-auto"
