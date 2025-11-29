@@ -325,7 +325,8 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
       const isMobile = viewportWidth < 640;
       cards.forEach((card, i) => {
         if (i < cards.length - 1) {
-          card.style.marginBottom = `${isMobile ? 0 : itemDistance}px`;
+          const h = card.offsetHeight || 0;
+          card.style.marginBottom = isMobile ? `-${Math.max(0, h - 40)}px` : `${itemDistance}px`;
         }
         card.style.willChange = 'transform, filter';
         card.style.transformOrigin = 'top center';
