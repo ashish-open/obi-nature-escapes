@@ -27,18 +27,22 @@ const Location = () => {
             ref={mapAnimation.ref}
             className={`bg-card rounded-2xl sm:rounded-3xl overflow-hidden shadow-[var(--shadow-warm)] transition-all duration-700 hover-lift animate-scale-in ${mapAnimation.isVisible ? 'visible' : ''}`}
           >
-            {/* Map Placeholder */}
-            <div className="relative h-64 sm:h-80 md:h-96 bg-muted flex items-center justify-center">
-              <div className="text-center">
-                <MapPin className="w-16 h-16 text-primary mx-auto mb-4" />
-                <p className="text-muted-foreground text-lg">Map will be integrated here</p>
-              </div>
+            <div className="relative h-64 sm:h-80 md:h-96 bg-muted">
+              <iframe
+                title="OBI Location Map"
+                className="absolute inset-0 w-full h-full"
+                src="https://www.google.com/maps?q=OBI%2C%20Off%20Sarjapur%20Road&output=embed"
+                loading="lazy"
+                allowFullScreen
+                referrerPolicy="no-referrer-when-downgrade"
+              />
             </div>
             
             <div className="p-6 sm:p-8 text-center">
               <Button 
                 size="lg" 
                 className="gradient-sunset hover:scale-105 transition-all duration-300 w-full sm:w-auto"
+                onClick={() => window.open('https://maps.app.goo.gl/Y3LpHLnsF88fMkTd6', '_blank')}
               >
                 <Navigation className="mr-2 w-4 h-4 sm:w-5 sm:h-5" />
                 Open in Maps

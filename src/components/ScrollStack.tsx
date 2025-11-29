@@ -10,7 +10,7 @@ export interface ScrollStackItemProps {
 
 export const ScrollStackItem: React.FC<ScrollStackItemProps> = ({ children, itemClassName = '', style = {} }) => (
   <div
-    className={`scroll-stack-card relative w-full h-80 my-8 p-12 rounded-[40px] shadow-[0_0_30px_rgba(0,0,0,0.1)] box-border origin-top will-change-transform ${itemClassName}`.trim()}
+    className={`scroll-stack-card relative w-full h-auto min-h-[20rem] my-8 p-12 rounded-[40px] shadow-[0_0_30px_rgba(0,0,0,0.1)] box-border origin-top will-change-transform ${itemClassName}`.trim()}
     style={{
       backfaceVisibility: 'hidden',
       transformStyle: 'preserve-3d',
@@ -113,6 +113,9 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
     const { scrollTop, containerHeight } = getScrollData();
     const stackPositionPx = parsePercentage(stackPosition, containerHeight);
     const scaleEndPositionPx = parsePercentage(scaleEndPosition, containerHeight);
+    const viewportWidth = window.innerWidth;
+    const isMobile = viewportWidth < 640;
+    const stackDistance = isMobile ? 0 : itemStackDistance;
 
     const innerContainer = scrollerRef.current?.querySelector('.scroll-stack-inner');
     const endElement = useWindowScroll && innerContainer
@@ -130,9 +133,9 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
         cardTop = getElementOffset(card);
         initialCardPositionsRef.current.set(i, cardTop);
       }
-      const triggerStart = cardTop - stackPositionPx - itemStackDistance * i;
+      const triggerStart = cardTop - stackPositionPx - stackDistance * i;
       const triggerEnd = cardTop - scaleEndPositionPx;
-      const pinStart = cardTop - stackPositionPx - itemStackDistance * i;
+      const pinStart = cardTop - stackPositionPx - stackDistance * i;
       const pinEnd = endElementTop - containerHeight / 2;
 
       const scaleProgress = calculateProgress(scrollTop, triggerStart, triggerEnd);
@@ -149,7 +152,7 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
             jCardTop = getElementOffset(cardsRef.current[j]);
             initialCardPositionsRef.current.set(j, jCardTop);
           }
-          const jTriggerStart = jCardTop - stackPositionPx - itemStackDistance * j;
+          const jTriggerStart = jCardTop - stackPositionPx - stackDistance * j;
           if (scrollTop >= jTriggerStart) {
             topCardIndex = j;
           }
@@ -165,9 +168,9 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
       const isPinned = scrollTop >= pinStart && scrollTop <= pinEnd;
 
       if (isPinned) {
-        translateY = scrollTop - cardTop + stackPositionPx + itemStackDistance * i;
+        translateY = scrollTop - cardTop + stackPositionPx + stackDistance * i;
       } else if (scrollTop > pinEnd) {
-        translateY = pinEnd - cardTop + stackPositionPx + itemStackDistance * i;
+        translateY = pinEnd - cardTop + stackPositionPx + stackDistance * i;
       }
 
       const newTransform = {
@@ -318,21 +321,34 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
         initialPositions.set(i, initialTop);
       });
 
+      const viewportWidth = window.innerWidth;
+      const isMobile = viewportWidth < 640;
       cards.forEach((card, i) => {
         if (i < cards.length - 1) {
-          card.style.marginBottom = `${itemDistance}px`;
+          card.style.marginBottom = `${isMobile ? 0 : itemDistance}px`;
         }
         card.style.willChange = 'transform, filter';
         card.style.transformOrigin = 'top center';
         card.style.backfaceVisibility = 'hidden';
         card.style.perspective = '1000px';
         card.style.webkitPerspective = '1000px';
-        // Don't set initial transform - let updateCardTransforms handle it
+        card.style.zIndex = String(1000 + i);
       });
 
+      const endEl = innerContainer.querySelector('.scroll-stack-end') as HTMLElement | null;
+      if (endEl) {
+        const { containerHeight } = getScrollData();
+        const stackPositionPx = parsePercentage(stackPosition, containerHeight);
+        const scaleEndPositionPx = parsePercentage(scaleEndPosition, containerHeight);
+        const viewportWidth = window.innerWidth;
+        const isMobileInit = viewportWidth < 640;
+        const stackDistanceInit = isMobileInit ? 0 : itemStackDistance;
+        const spacerHeight = Math.max(0, stackPositionPx + stackDistanceInit * (cards.length - 1) + scaleEndPositionPx + containerHeight * 0.25);
+        endEl.style.height = `${spacerHeight}px`;
+      }
+
       setupLenis();
-      
-      // Force an initial update
+
       requestAnimationFrame(() => {
         updateCardTransforms();
       });
@@ -386,7 +402,7 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
           transform: 'translateZ(0)',
         }}
       >
-        <div className="scroll-stack-inner pt-[20vh] px-4 sm:px-8 md:px-20 pb-[50rem] min-h-screen">
+        <div className="scroll-stack-inner pt-[20vh] px-4 sm:px-8 md:px-20 pb-0 min-h-screen">
           {children}
           {/* Spacer so the last pin can release cleanly */}
           <div className="scroll-stack-end w-full h-px" />
@@ -408,7 +424,7 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
         willChange: 'scroll-position'
       }}
     >
-      <div className="scroll-stack-inner pt-[20vh] px-20 pb-[50rem] min-h-screen">
+      <div className="scroll-stack-inner pt-[20vh] px-20 pb-0 min-h-screen">
         {children}
         {/* Spacer so the last pin can release cleanly */}
         <div className="scroll-stack-end w-full h-px" />

@@ -7,6 +7,11 @@ import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 import { supabase } from "@/integrations/supabase/client";
+import { Popover, PopoverTrigger, PopoverContent } from "@/components/ui/popover";
+import { DayPicker } from "react-day-picker";
+import { format } from "date-fns";
+import { Calendar as CalendarIcon } from "lucide-react";
+import "react-day-picker/dist/style.css";
 
 const EnquiryForm = () => {
   const titleAnimation = useScrollAnimation();
@@ -14,6 +19,8 @@ const EnquiryForm = () => {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [eventType, setEventType] = useState("");
+  const [eventDate, setEventDate] = useState<Date | undefined>(undefined);
+  const [datePickerOpen, setDatePickerOpen] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -23,7 +30,7 @@ const EnquiryForm = () => {
     const eventDate = formData.get("eventDate") as string;
     
     try {
-      const { error } = await supabase.from("enquiries").insert({
+      const { error } = await supabase.from("space_enquiries").insert({
         name: formData.get("name") as string,
         phone: formData.get("phone") as string,
         email: formData.get("email") as string,
@@ -141,12 +148,42 @@ const EnquiryForm = () => {
                 <Label htmlFor="eventDate" className="text-foreground mb-2 block font-semibold">
                   Event Date
                 </Label>
-                <Input 
-                  id="eventDate" 
-                  name="eventDate"
-                  type="date" 
-                  className="border-2 focus:border-primary transition-colors"
-                />
+                <Popover open={datePickerOpen} onOpenChange={setDatePickerOpen}>
+                  <PopoverTrigger asChild>
+                    <button
+                      type="button"
+                      className="flex h-10 w-full min-w-0 items-center justify-between rounded-md border-2 border-input bg-background px-3 py-2 text-sm ring-offset-background focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
+                    >
+                      <span className="text-left truncate">
+                        {eventDate ? format(eventDate, "yyyy-MM-dd") : "Select date"}
+                      </span>
+                      <CalendarIcon className="h-4 w-4 opacity-50" />
+                    </button>
+                  </PopoverTrigger>
+                  <PopoverContent side="bottom" sideOffset={8} align="center" avoidCollisions={false} className="p-0 bg-popover text-popover-foreground w-[20rem] sm:w-[22rem] max-w-[90vw] overflow-hidden shadow-md rounded-xl">
+                    <DayPicker
+                      className="p-2 text-sm"
+                      mode="single"
+                      selected={eventDate}
+                      onSelect={(date) => { setEventDate(date ?? undefined); setDatePickerOpen(false); }}
+                      showOutsideDays
+                      numberOfMonths={1}
+                      disabled={{ before: new Date() }}
+                      fromMonth={new Date()}
+                      classNames={{
+                        caption: 'px-3 py-2 text-base font-semibold',
+                        nav_button: 'h-8 w-8 rounded-md hover:bg-primary/20 text-primary',
+                        head_row: 'grid grid-cols-7 px-3 text-xs text-muted-foreground',
+                        row: 'grid grid-cols-7 px-3',
+                        day: 'w-9 h-9 inline-flex items-center justify-center rounded-md text-sm hover:bg-primary/20 hover:text-primary',
+                        day_selected: 'bg-primary text-primary-foreground hover:bg-primary',
+                        day_today: 'border border-primary',
+                        day_outside: 'opacity-40',
+                      }}
+                    />
+                  </PopoverContent>
+                </Popover>
+                <input type="hidden" id="eventDate" name="eventDate" value={eventDate ? format(eventDate, "yyyy-MM-dd") : ""} />
               </div>
             </div>
 
