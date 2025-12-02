@@ -36,7 +36,7 @@ const About = () => {
                 <highlight.icon className="w-7 h-7 text-primary-foreground" />
               </div>
               
-              <p className="text-muted-foreground leading-relaxed">
+              <p className="text-muted-foreground leading-relaxed text-center">
                 {highlight.description}
               </p>
             </div>)}

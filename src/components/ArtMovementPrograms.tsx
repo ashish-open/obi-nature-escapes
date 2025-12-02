@@ -1,7 +1,49 @@
 import { Button } from "@/components/ui/button";
 import { Palette, Activity, Users, Sparkles, Music, Camera } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
-import ScrollStack, { ScrollStackItem } from "./ScrollStack";
+
+const ProgramCard = ({ program }: { program: any }) => {
+  const cardAnimation = useScrollAnimation<HTMLDivElement>();
+  return (
+    <div
+      ref={cardAnimation.ref}
+      className={`group relative overflow-hidden rounded-2xl sm:rounded-3xl shadow-[var(--shadow-subtle)] border-2 border-primary/20 animate-on-scroll ${cardAnimation.isVisible ? 'visible' : ''}`}
+      style={{
+        backgroundImage: `url(${program.bgImage})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat'
+      }}
+    >
+      <div className="absolute inset-0 bg-black/50 backdrop-blur-[1px]"></div>
+      <div className="relative z-10 p-6 sm:p-8 min-h-[16rem] sm:min-h-[18rem] md:min-h-[20rem] flex flex-col justify-end">
+        <div className="w-14 h-14 rounded-full gradient-sunset flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+          <program.icon className="w-7 h-7 text-primary-foreground" />
+        </div>
+        <h3 className="font-display text-xl sm:text-2xl font-bold mb-3 text-white drop-shadow-lg">
+          {program.title}
+        </h3>
+        <p className="text-white/90 mb-4 leading-relaxed drop-shadow-md">
+          {program.description}
+        </p>
+        <div className="flex flex-wrap gap-2 mb-4">
+          {program.ageGroups.map((age: string, idx: number) => (
+            <span key={idx} className="text-xs sm:text-sm px-2 py-1 rounded-full bg-white/20 backdrop-blur-sm text-white border border-white/30">
+              {age}
+            </span>
+          ))}
+        </div>
+        <Button 
+          variant="outline" 
+          className="w-full border-2 border-white/50 text-white hover:bg-white hover:text-primary transition-all duration-300 backdrop-blur-sm"
+          style={{ transform: 'translateZ(0)', willChange: 'auto' }}
+        >
+          Learn More
+        </Button>
+      </div>
+    </div>
+  );
+};
 
 const ArtMovementPrograms = () => {
   const titleAnimation = useScrollAnimation();
@@ -67,57 +109,11 @@ const ArtMovementPrograms = () => {
         </div>
 
         <div className="max-w-7xl mx-auto">
-          <ScrollStack useWindowScroll={true}>
+          <div className="space-y-6 sm:space-y-8">
             {programs.map((program, index) => (
-              <ScrollStackItem 
-                key={index} 
-                itemClassName="border-2 border-primary/20 overflow-hidden"
-                style={{
-                  backgroundImage: `url(${program.bgImage})`,
-                  backgroundSize: 'cover',
-                  backgroundPosition: 'center',
-                  backgroundRepeat: 'no-repeat'
-                }}
-              >
-                {/* Overlay for better text readability */}
-                <div className="absolute inset-0 bg-black/50 backdrop-blur-[1px]"></div>
-                
-                {/* Content with relative positioning */}
-                <div className="relative z-10">
-                  <div className="w-14 h-14 rounded-full gradient-sunset flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
-                    <program.icon className="w-7 h-7 text-primary-foreground" />
-                  </div>
-                  
-                  <h3 className="font-display text-xl sm:text-2xl font-bold mb-3 text-white drop-shadow-lg">
-                    {program.title}
-                  </h3>
-                  
-                  <p className="text-white/90 mb-4 leading-relaxed drop-shadow-md">
-                    {program.description}
-                  </p>
-
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {program.ageGroups.map((age, idx) => (
-                      <span 
-                        key={idx}
-                        className="text-xs sm:text-sm px-2 py-1 rounded-full bg-white/20 backdrop-blur-sm text-white border border-white/30"
-                      >
-                        {age}
-                      </span>
-                    ))}
-                  </div>
-
-                  <Button 
-                    variant="outline" 
-                    className="w-full border-2 border-white/50 text-white hover:bg-white hover:text-primary transition-all duration-300 backdrop-blur-sm"
-                    style={{ transform: 'translateZ(0)', willChange: 'auto' }}
-                  >
-                    Learn More
-                  </Button>
-                </div>
-              </ScrollStackItem>
+              <ProgramCard key={index} program={program} />
             ))}
-          </ScrollStack>
+          </div>
         </div>
 
         <div className="text-center mt-8 sm:mt-12">
