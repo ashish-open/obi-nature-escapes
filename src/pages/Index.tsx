@@ -32,7 +32,7 @@ const Index = () => {
       <ArtMovementPrograms />
       <Packages />
       <Afterschool />
-      <VirtualTour />
+      {/* <VirtualTour /> */}
       <section id="gallery">
         <Gallery />
       </section>
